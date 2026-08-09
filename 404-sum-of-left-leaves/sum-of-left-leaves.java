@@ -18,31 +18,30 @@ class Solution {
         if(root == null){
             return 0;
         }
-        Queue<TreeNode>q=new LinkedList<>();
-        q.offer(root);
-        int leftSum=0;
+        Queue<TreeNode> q=new LinkedList<>();
+        q.add(root);
+
+        int sum=0;
 
         while(!q.isEmpty()){
             int size=q.size();
 
-           for(int i=0;i<size;i++){
-            TreeNode curr=q.poll();
+            for(int i=0;i<size;i++){
+                TreeNode curr=q.poll();
 
-            if(curr.left!=null){
-                // q.offer(curr.left);
-                //leftSum=leftSum+curr.left.val;    this is adding left child
+                if(curr.left!=null){
 
-                if(curr.left.left == null && curr.left.right == null){
-                    leftSum=leftSum+curr.left.val;
+                    if(curr.left.left == null && curr.left.right == null){
+                        sum=sum+curr.left.val;
+                    }
+                    q.offer(curr.left);
                 }
-                q.offer(curr.left);
+
+                if(curr.right !=null){
+                    q.offer(curr.right);
+                }
             }
-           
-            if(curr.right !=null){
-                q.offer(curr.right);
-            }
-           }
         }
-         return leftSum;
+        return sum;
     }
 }
