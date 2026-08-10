@@ -15,31 +15,30 @@
  */
 class Solution {
     public TreeNode invertTree(TreeNode root) {
-       if( root == null){
-        return  null;
-       }
-       Queue<TreeNode> q=new LinkedList<>();
-       q.offer(root);
-
-       while(!q.isEmpty()){
+      if( root == null){
+        return null;
+      }
+      Queue<TreeNode> q= new LinkedList<>();
+      q.offer(root);
+      while(!q.isEmpty()){
         int size=q.size();
 
-        for( int i=0;i<size;i++ ){
+        for(int i=0;i<size;i++){
             TreeNode curr=q.poll();
 
             TreeNode temp=curr.left;
             curr.left=curr.right;
             curr.right=temp;
 
-            if( curr.left != null ){
+            if(curr.left != null){
                 q.offer(curr.left);
             }
 
-            if( curr.right != null){
+            if(curr.right!=null){
                 q.offer(curr.right);
             }
         }
-       }
-       return root;
+      }
+      return root;
     }
 }
